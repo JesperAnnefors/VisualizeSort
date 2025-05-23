@@ -1,7 +1,10 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -16,9 +19,8 @@ public class MainFrame {
 			frame.setTitle("VisualizeSort");
 			frame.setResizable(false);
 			frame.setSize(1200, 720);
-			frame.setLayout(new BorderLayout(10, 10));
+			frame.setLayout(new BorderLayout());
 			frame.setLocationRelativeTo(null);
-			frame.setVisible(true);
 			
 			//create a header panel
 			JPanel header = new JPanel();
@@ -26,6 +28,16 @@ public class MainFrame {
 			//set header specifications
 			header.setBackground(Color.red);
 			header.setPreferredSize(new Dimension(50,50));
+			header.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 12));
+			
+			//create header components
+			JButton randomize = new JButton("Randomize");
+			
+			JButton sort = new JButton("Sort!");
+			
+			String[] algorithms = {"Bubble sort", "Merge sort"};
+			JComboBox<String> algorithm = new JComboBox<String>(algorithms);
+			
 			
 			/* 
 				Todo: 
@@ -36,6 +48,11 @@ public class MainFrame {
 					Button to start the sorting algorithm + animation.
 			*/
 			
+			//add components to header
+			header.add(randomize);
+			header.add(algorithm);
+			header.add(sort);
+			
 			//add header to frame
 			frame.add(header, BorderLayout.NORTH);
 			
@@ -44,5 +61,7 @@ public class MainFrame {
 			JPanel sortPanel = new JPanel();
 			sortPanel.setBackground(Color.blue);
 			frame.add(sortPanel, BorderLayout.CENTER);
+			
+			frame.setVisible(true);
 		}
 }

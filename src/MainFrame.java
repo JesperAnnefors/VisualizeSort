@@ -3,10 +3,13 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JSlider;
 
 public class MainFrame {
 
@@ -26,9 +29,8 @@ public class MainFrame {
 			JPanel header = new JPanel();
 			
 			//set header specifications
-			header.setBackground(Color.red);
-			header.setPreferredSize(new Dimension(50,50));
-			header.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 12));
+			header.setPreferredSize(new Dimension(75, 75));
+			header.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 15));
 			
 			//create header components
 			JButton randomize = new JButton("Randomize");
@@ -38,20 +40,22 @@ public class MainFrame {
 			String[] algorithms = {"Bubble sort", "Merge sort"};
 			JComboBox<String> algorithm = new JComboBox<String>(algorithms);
 			
+			JSlider slider = new JSlider(10, 100, 50);
+			slider.setPaintTicks(true);
+			slider.setMinorTickSpacing(5);
+			slider.setPaintTrack(true);
+			slider.setMajorTickSpacing(10);
+			slider.setPaintLabels(true);
 			
-			/* 
-				Todo: 
-				Add buttons to header: 
-					Combobox to choose which algorithm to use.
-					Slider for array length.
-					Button to randomize the array.
-					Button to start the sorting algorithm + animation.
-			*/
+			JLabel label = new JLabel(" Array Length: " + slider.getValue() + " ");
+			label.setBorder(BorderFactory.createLineBorder(Color.black));
 			
 			//add components to header
 			header.add(randomize);
 			header.add(algorithm);
 			header.add(sort);
+			header.add(slider);
+			header.add(label);
 			
 			//add header to frame
 			frame.add(header, BorderLayout.NORTH);

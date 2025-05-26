@@ -29,7 +29,7 @@ public class MainFrame {
 			JPanel header = new JPanel();
 			
 			//set header specifications
-			header.setPreferredSize(new Dimension(75, 75));
+			header.setPreferredSize(new Dimension(1200, 75));
 			header.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 15));
 			
 			//create header components
@@ -57,13 +57,13 @@ public class MainFrame {
 			header.add(slider);
 			header.add(label);
 			
-			//add header to frame
-			frame.add(header, BorderLayout.NORTH);
+			//Create AlgoSortPanel
+			AlgoSortPanel sortPanel = new AlgoSortPanel();
 			
-			//replace the sortPanel with a parent class that extends JPanel.
-			//create child classes for each sorting algorithm.
-			JPanel sortPanel = new JPanel();
 			sortPanel.setBackground(Color.blue);
+			
+			//add panels to frame
+			frame.add(header, BorderLayout.NORTH);
 			frame.add(sortPanel, BorderLayout.CENTER);
 			
 			frame.setVisible(true);

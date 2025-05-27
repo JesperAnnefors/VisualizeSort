@@ -29,7 +29,7 @@ public class MainFrame {
 			JPanel header = new JPanel();
 			
 			//set header specifications
-			header.setPreferredSize(new Dimension(1200, 75));
+			header.setPreferredSize(new Dimension(1200, 81));
 			header.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 15));
 			
 			//create header components

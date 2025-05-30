@@ -57,4 +57,8 @@ public class AlgoSortPanel extends JPanel {
             array[j] = temp;
         }
 	}
+	
+	public void setVisible(int v) {
+		visible = v;
+	}
 }

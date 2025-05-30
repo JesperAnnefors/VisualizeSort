@@ -11,12 +11,11 @@ public class AlgoSortPanel extends JPanel {
 	private int arraySize = 100;
 	private int visible = 100;
 	private int[] array = new int[arraySize];
-	private int hMultiplier = -6;
-	private int wWidth = 1185;
+	private int hMultiplier = 6;
+	private int wWidth = 1200;
 	private BasicStroke lineWidth = new BasicStroke(1f);
 	
 	AlgoSortPanel(){
-		//this.setPreferredSize(new Dimension(1200, 600));
 		for (int i = 0; i < arraySize; i ++) {
 			array[i] = i + 1;
 		}
@@ -31,12 +30,12 @@ public class AlgoSortPanel extends JPanel {
 		g2D.setStroke(lineWidth);
 		g2D.setColor(Color.red);
 		for (int i = 0; i < arraySize; i ++) {
-			g2D.fillRect(0 + (wWidth * i / visible), 600, wWidth / visible, array[i] * hMultiplier);
+			g2D.fillRect(0 + (wWidth * i / visible), 602 - array[i] * hMultiplier  , wWidth / visible, array[i] * hMultiplier);
 		}
 		
 		g2D.setColor(Color.black);	
 		for (int i = 0; i < arraySize; i ++) {		
-			g2D.drawRect(0 + (wWidth * i / visible), 600 - array[i] * -hMultiplier  , wWidth / visible, array[i] * -hMultiplier);
+			g2D.drawRect(0 + (wWidth * i / visible), 602 - array[i] * hMultiplier  , wWidth / visible, array[i] * hMultiplier);
 		}
 		
 	}

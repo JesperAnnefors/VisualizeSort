@@ -27,8 +27,9 @@ public class MainFrame implements ActionListener, ChangeListener{
 	private String[] algorithms = {"Bubble sort", "Merge sort"};
 	private JComboBox<String> algorithm = new JComboBox<String>(algorithms);
 	
-	//AlgoSortPanel
 	private AlgoSortPanel sortPanel = new AlgoSortPanel();
+	private SortingAlgo sortAlgo;
+	
 
 	public MainFrame() {
 		//create a frame
@@ -117,5 +118,10 @@ public class MainFrame implements ActionListener, ChangeListener{
 		slider.setEnabled(b);
 		randomize.setEnabled(b);
 		algorithm.setEnabled(b);
+	}
+	
+	
+	public interface SortingAlgo {
+		void sort(int[] array);
 	}
 }

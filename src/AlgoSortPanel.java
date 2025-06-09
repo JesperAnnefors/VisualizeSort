@@ -15,6 +15,7 @@ public class AlgoSortPanel extends JPanel {
 	private int wWidth = 1200;
 	private BasicStroke lineWidth = new BasicStroke(1f);
 	
+	
 	AlgoSortPanel(){
 		for (int i = 0; i < arraySize; i ++) {
 			array[i] = i + 1;

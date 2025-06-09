@@ -23,10 +23,12 @@ public class MainFrame implements ActionListener, ChangeListener{
 	private JButton randomize = new JButton("Randomize");
 	private JButton sort = new JButton("Sort!");
 	private JSlider slider = new JSlider(10, 100, 50);
-	JLabel label = new JLabel(" Array Length: " + slider.getValue() + " ");
+	private JLabel label = new JLabel(" Array Length: " + slider.getValue() + " ");
+	private String[] algorithms = {"Bubble sort", "Merge sort"};
+	private JComboBox<String> algorithm = new JComboBox<String>(algorithms);
 	
 	//AlgoSortPanel
-	AlgoSortPanel sortPanel = new AlgoSortPanel();
+	private AlgoSortPanel sortPanel = new AlgoSortPanel();
 
 	public MainFrame() {
 		//create a frame
@@ -48,8 +50,6 @@ public class MainFrame implements ActionListener, ChangeListener{
 		header.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 15));
 		
 		//setup header components
-		String[] algorithms = {"Bubble sort", "Merge sort"};
-		JComboBox<String> algorithm = new JComboBox<String>(algorithms);
 		
 		slider.setPaintTicks(true);
 		slider.setMinorTickSpacing(5);
@@ -69,6 +69,7 @@ public class MainFrame implements ActionListener, ChangeListener{
 		//add actionListeners
 		randomize.addActionListener(this);
 		slider.addChangeListener(this);
+		sort.addActionListener(this);
 		
 		//Setup AlgoSortPanel
 		
@@ -83,8 +84,18 @@ public class MainFrame implements ActionListener, ChangeListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		sortPanel.shuffle();
-		sortPanel.repaint();
+		if (e.getSource() == randomize) {
+			sortPanel.shuffle();
+			sortPanel.repaint();
+		}
+		else if (e.getSource() == sort) {
+			if (sort.getText().equals("Sort!")) {
+				setEnabledHeader(false);
+			}
+			else {
+				setEnabledHeader(true);
+			}
+		}		
 	}
 
 	@Override
@@ -94,4 +105,17 @@ public class MainFrame implements ActionListener, ChangeListener{
 		sortPanel.repaint();			
 	}
 	
+	public void setEnabledHeader(Boolean b) {
+		
+		if (b) {
+			sort.setText("Sort!");
+		}
+		else {
+			sort.setText("Stop");
+		}
+		
+		slider.setEnabled(b);
+		randomize.setEnabled(b);
+		algorithm.setEnabled(b);
+	}
 }

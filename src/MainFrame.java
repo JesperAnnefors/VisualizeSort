@@ -18,17 +18,17 @@ import javax.swing.event.ChangeListener;
 public class MainFrame implements ActionListener, ChangeListener{
 	private int frameWidth = 1200;
 	private int frameHeight = 720;
+	private int sliderValue = 50;
 	
 	//Header components
 	private JButton randomize = new JButton("Randomize");
 	private JButton sort = new JButton("Sort!");
-	private JSlider slider = new JSlider(10, 100, 50);
-	private JLabel label = new JLabel(" Array Length: " + slider.getValue() + " ");
+	private JSlider slider = new JSlider(10, 100, sliderValue);
+	private JLabel label = new JLabel(" Array Length: " + sliderValue + " ");
 	private String[] algorithms = {"Bubble sort", "Merge sort"};
 	private JComboBox<String> algorithm = new JComboBox<String>(algorithms);
 	
-	private AlgoSortPanel sortPanel = new AlgoSortPanel();
-	private SortingAlgo sortAlgo;
+	private AlgoSortPanel sortPanel = new AlgoSortPanel(this);
 	
 
 	public MainFrame() {
@@ -91,9 +91,12 @@ public class MainFrame implements ActionListener, ChangeListener{
 		}
 		else if (e.getSource() == sort) {
 			if (sort.getText().equals("Sort!")) {
+				sortPanel.setSortAlgorithm(algorithm.getSelectedItem().toString());
+				sortPanel.startSort();
 				setEnabledHeader(false);
 			}
 			else {
+				sortPanel.stopSort();
 				setEnabledHeader(true);
 			}
 		}		
@@ -101,8 +104,9 @@ public class MainFrame implements ActionListener, ChangeListener{
 
 	@Override
 	public void stateChanged(ChangeEvent e) {
-		label.setText(" Array Length: " + String.valueOf(slider.getValue()) + " ");	
-		sortPanel.setVisible(slider.getValue());
+		sliderValue = slider.getValue();
+		label.setText(" Array Length: " + String.valueOf(sliderValue) + " ");
+		sortPanel.setVisible(sliderValue);
 		sortPanel.repaint();			
 	}
 	
@@ -118,10 +122,5 @@ public class MainFrame implements ActionListener, ChangeListener{
 		slider.setEnabled(b);
 		randomize.setEnabled(b);
 		algorithm.setEnabled(b);
-	}
-	
-	
-	public interface SortingAlgo {
-		void sort(int[] array);
 	}
 }

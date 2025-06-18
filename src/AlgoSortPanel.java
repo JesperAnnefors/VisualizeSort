@@ -9,19 +9,23 @@ import javax.swing.JPanel;
 @SuppressWarnings("serial")
 public class AlgoSortPanel extends JPanel {
 	private int arraySize = 100;
-	private int visible = 100;
+	private int visible = 50;
 	private int[] array = new int[arraySize];
 	private int hMultiplier = 6;
 	private int wWidth = 1200;
 	private BasicStroke lineWidth = new BasicStroke(1f);
+	private Thread sortThread;
+	private SortingAlgo sortAlgo;
+	private MainFrame frame;
 	
 	
-	AlgoSortPanel(){
+	AlgoSortPanel(MainFrame frame){
 		for (int i = 0; i < arraySize; i ++) {
 			array[i] = i + 1;
 		}
 		
 		shuffle();
+		this.frame = frame;
 	}
 	
 	@Override
@@ -39,6 +43,20 @@ public class AlgoSortPanel extends JPanel {
 			g2D.drawRect(0 + (wWidth * i / visible), 602 - array[i] * hMultiplier  , wWidth / visible, array[i] * hMultiplier);
 		}
 		
+	}
+	
+	public void animate(int delay) {
+		try {
+			Thread.sleep(delay);
+		} catch (InterruptedException e) {
+			Thread.currentThread().interrupt();
+		}
+		repaint();
+	}
+	
+	public Boolean threadInterrupted() {
+		Thread.currentThread();
+		return Thread.interrupted();
 	}
 	
 	public void shuffle() {
@@ -61,5 +79,31 @@ public class AlgoSortPanel extends JPanel {
 	
 	public void setVisible(int v) {
 		visible = v;
+	}
+	
+	public interface SortingAlgo {
+		void sort(int[] array, int length);
+	}
+	
+	public void startSort() {
+		sortThread = new Thread(() -> {
+            sortAlgo.sort(array, visible);
+            frame.setEnabledHeader(true);
+        });
+        sortThread.start();
+	}
+	
+	public void stopSort() {
+		sortThread.interrupt();
+	}
+	
+	public void setSortAlgorithm(String algo) {
+		switch (algo) {
+			case "Bubble sort":
+				sortAlgo = new BubbleSort(this);
+				break;
+			case "Merge sort":
+				break;
+		}
 	}
 }

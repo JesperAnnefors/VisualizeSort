@@ -2,6 +2,7 @@
 public class BubbleSort implements AlgoSortPanel.SortingAlgo {
 
 	private AlgoSortPanel panel;
+	private int delay;
 	
 	BubbleSort(AlgoSortPanel panel){
 		this.panel = panel;
@@ -11,6 +12,8 @@ public class BubbleSort implements AlgoSortPanel.SortingAlgo {
 	public void sort(int[] array, int length) {
 		int i, j, temp;
         boolean swapped;
+        delay = 110 - length;
+        
         for (i = 0; i < length - 1; i++) {
             swapped = false;
             for (j = 0; j < length - i - 1; j++) {
@@ -23,8 +26,7 @@ public class BubbleSort implements AlgoSortPanel.SortingAlgo {
                     array[j] = array[j + 1];
                     array[j + 1] = temp;
                     swapped = true;
-                    System.out.println(110 - length);
-                    panel.animate((int) (110 - length));
+                    panel.animate(delay);
                 }
             }
 

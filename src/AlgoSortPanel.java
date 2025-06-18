@@ -103,6 +103,7 @@ public class AlgoSortPanel extends JPanel {
 				sortAlgo = new BubbleSort(this);
 				break;
 			case "Merge sort":
+				sortAlgo = new MergeSort(this);
 				break;
 		}
 	}

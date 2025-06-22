@@ -108,6 +108,9 @@ public class AlgoSortPanel extends JPanel {
 			case "Quick sort":
 				sortAlgo = new QuickSort(this);
 				break;
+			case "Selection sort":
+				sortAlgo = new SelectionSort(this);
+				break;
 		}
 	}
 }

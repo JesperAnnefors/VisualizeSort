@@ -25,7 +25,7 @@ public class MainFrame implements ActionListener, ChangeListener{
 	private JButton sort = new JButton("Sort!");
 	private JSlider slider = new JSlider(10, 100, sliderValue);
 	private JLabel label = new JLabel(" Array Length: " + sliderValue + " ");
-	private String[] algorithms = {"Bubble sort", "Merge sort", "Quick sort"};
+	private String[] algorithms = {"Bubble sort", "Merge sort", "Quick sort", "Selection sort"};
 	private JComboBox<String> algorithm = new JComboBox<String>(algorithms);
 	
 	private AlgoSortPanel sortPanel = new AlgoSortPanel(this);
